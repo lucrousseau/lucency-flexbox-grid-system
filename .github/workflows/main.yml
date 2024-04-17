@@ -3,7 +3,7 @@ name: Build on Master Commit
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
