@@ -1,0 +1,3 @@
+@function getPrefix($prefix) {
+  @return if($prefix == "" or $prefix == "full", "", "--#{$prefix}");
+}

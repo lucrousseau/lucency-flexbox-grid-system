@@ -1,0 +1,16 @@
+@mixin addCSSClasses($classes, $prefix) {
+  @each $key, $value in $classes {
+    $prop: map-get($value, prop);
+    $values: map-get($value, values);
+
+    @each $valueKey, $actualValue in $values {
+      @if ($valueKey != "") {
+        $valueKey: "-#{$valueKey}";
+      }
+
+      &.#{$key}#{$valueKey}#{$prefix} {
+        #{$prop}: $actualValue;
+      }
+    }
+  }
+}

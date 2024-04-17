@@ -1,0 +1,13 @@
+@mixin setMediaQueryBreakpoints($breakpoints, $prefix) {
+  @if map-has-key($breakpoints, $prefix) {
+    @if $prefix == "full" {
+      @content;
+    } @else {
+      @media (max-width: map-get($breakpoints, $prefix)) {
+        @content;
+      }
+    }
+  } @else {
+    @warn "Unknown breakpoint: #{$prefix}.";
+  }
+}

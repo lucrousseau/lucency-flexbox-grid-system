@@ -1,0 +1,18 @@
+@mixin setColsWidth($prefix, $columns, $slug) {
+  @if ($prefix == "") {
+    flex: 1;
+    width: 100%;
+  }
+
+  @for $size from 1 through $columns {
+    &.#{$slug}-col-#{$size}#{$prefix} {
+      $calc: calc(
+        ((100% / #{$columns}) * #{$size}) -
+          (var(--get-gap#{$prefix}) * #{1 - math.div(1, $columns) * $size})
+      );
+
+      flex: 0 0 $calc;
+      width: $calc;
+    }
+  }
+}

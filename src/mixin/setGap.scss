@@ -1,0 +1,13 @@
+@mixin setGap($breakpoints, $currentPrefix, $prefix) {
+  $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
+
+  $previousBreakpoint: if(
+    $prefix == "",
+    1rem,
+    var(--get-gap#{$previousPrefix})
+  );
+
+  --get-gap#{$prefix}: var(--gap#{$prefix}, #{$previousBreakpoint});
+
+  gap: var(--get-gap#{$prefix}, #{$previousBreakpoint});
+}

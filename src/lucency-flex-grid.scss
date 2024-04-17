@@ -1,0 +1,172 @@
+@use "sass:math";
+
+// Importing the mixins
+@import "./mixin/setMediaQueryBreakpoints";
+@import "./mixin/setResponsiveStyles";
+@import "./mixin/getPrefix";
+@import "./mixin/getPreviousPrefix";
+@import "./mixin/setColsWidth";
+@import "./mixin/addCSSClasses";
+@import "./mixin/addMarginPadding";
+@import "./mixin/setGap";
+@import "./mixin/setPull";
+
+@mixin lucencyFlexGrid(
+  $breakpoints: (
+    xxl: "1536px",
+    xl: "1280px",
+    lg: "1024px",
+    md: "768px",
+    sm: "640px",
+    xs: "420px",
+  ),
+  $columns: 12,
+  $slug: "lucency"
+) {
+  $breakpoints: map-merge(
+    (
+      full: null,
+    ),
+    $breakpoints
+  );
+
+  // Building the flex grid system
+  .#{$slug} {
+    @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+      @include addMarginPadding(
+        (
+          "margin": (
+            top,
+            right,
+            bottom,
+            left,
+          ),
+          "padding": (
+            top,
+            right,
+            bottom,
+            left,
+          ),
+        ),
+        $breakpoints,
+        $currentPrefix,
+        $prefix
+      );
+
+      @at-root {
+        @include addCSSClasses(
+          (
+            "#{$slug}": (
+              "prop": "display",
+              "values": (
+                ("flex", flex),
+                ("inline-flex", inline-flex),
+              ),
+            ),
+            "#{$slug}-flex": (
+              "prop": "flex-direction",
+              "values": (
+                ("row", row),
+                ("row-reverse", row-reverse),
+                ("column", column),
+                ("column-reverse", column-reverse),
+              ),
+            ),
+            "#{$slug}-flex-wrap": (
+              "prop": "flex-wrap",
+              "values": (
+                ("", wrap),
+                ("wrap-reverse", wrap-reverse),
+                ("nowrap", nowrap),
+              ),
+            ),
+            "#{$slug}-justify": (
+              "prop": "justify-content",
+              "values": (
+                ("normal", normal),
+                ("start", flex-start),
+                ("end", flex-end),
+                ("center", center),
+                ("between", space-between),
+                ("around", space-around),
+                ("evenly", space-evenly),
+                ("stretch", stretch),
+              ),
+            ),
+            "#{$slug}-items": (
+              "prop": "align-items",
+              "values": (
+                ("start", flex-start),
+                ("end", flex-end),
+                ("center", center),
+                ("baseline", baseline),
+                ("stretch", stretch),
+              ),
+            ),
+            "#{$slug}-content": (
+              "prop": "align-content",
+              "values": (
+                ("normal" normal),
+                ("center", center),
+                ("flex-start", flex-start),
+                ("flex-end", flex-end),
+                ("space-between", space-between),
+                ("space-around", space-around),
+                ("space-evenly", space-evenly),
+                ("baseline", baseline),
+                ("stretch", stretch),
+              ),
+            ),
+          ),
+          $prefix
+        );
+      }
+    }
+
+    &-flex,
+    &-inline-flex {
+      @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+        @include setGap($breakpoints, $currentPrefix, $prefix);
+      }
+    }
+
+    &-col {
+      @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+        @include setColsWidth($prefix, $columns, $slug);
+
+        @include setPull($prefix, $slug);
+
+        @include addCSSClasses(
+          (
+            "#{$slug}-self": (
+              "prop": "align-self",
+              "values": (
+                ("auto", auto),
+                ("start", flex-start),
+                ("end", flex-end),
+                ("center", center),
+                ("stretch", stretch),
+                ("baseline", baseline),
+              ),
+            ),
+          ),
+          $prefix
+        );
+      }
+    }
+
+    &-align {
+      @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+        &-left#{$prefix} {
+          text-align: left;
+        }
+        &-center#{$prefix} {
+          text-align: center;
+        }
+        &-right#{$prefix} {
+          text-align: right;
+        }
+      }
+    }
+  }
+}

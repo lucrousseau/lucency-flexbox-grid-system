@@ -1,0 +1,8 @@
+@mixin setPull($prefix, $slug) {
+  &.#{$slug}-pull-left#{$prefix} {
+    margin-right: auto;
+  }
+  &.#{$slug}-pull-right#{$prefix} {
+    margin-left: auto;
+  }
+}

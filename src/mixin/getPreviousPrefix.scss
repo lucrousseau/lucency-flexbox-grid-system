@@ -1,0 +1,18 @@
+@function getPreviousPrefix($breakpoints, $prefix) {
+  $previousPrefix: null;
+  $previousBreakpoint: null;
+
+  @if $prefix == "full" {
+    @return null;
+  }
+
+  @each $currentPrefix, $breakAt in $breakpoints {
+    @if $currentPrefix == $prefix and $previousPrefix != null {
+      @return getPrefix($previousPrefix);
+    }
+
+    $previousPrefix: $currentPrefix;
+  }
+
+  @return null;
+}

@@ -1,0 +1,9 @@
+@mixin setResponsiveStyles($breakpoints) {
+  @each $currentPrefix, $breakAt in $breakpoints {
+    $prefix: getPrefix($currentPrefix);
+
+    @include setMediaQueryBreakpoints($breakpoints, $currentPrefix) {
+      @content ($currentPrefix, $prefix);
+    }
+  }
+}

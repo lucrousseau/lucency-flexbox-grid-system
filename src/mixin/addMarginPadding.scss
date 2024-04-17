@@ -1,0 +1,29 @@
+@mixin addMarginPadding($marginPadding, $breakpoints, $currentPrefix, $prefix) {
+  $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
+
+  @each $property, $directions in $marginPadding {
+    $values: ();
+
+    @each $direction in $directions {
+      $previousBreakpoint: if(
+        $prefix == "",
+        0,
+        var(--get-#{$property}-#{$direction}#{$previousPrefix})
+      );
+
+      --get-#{$property}-#{$direction}#{$prefix}: var(
+        --#{$property}-#{$direction}#{$prefix},
+        #{$previousBreakpoint}
+      );
+
+      $value: var(
+        --get-#{$property}-#{$direction}#{$prefix},
+        #{$previousBreakpoint}
+      );
+
+      $values: append($values, $value, space);
+    }
+
+    #{$property}: $values;
+  }
+}
