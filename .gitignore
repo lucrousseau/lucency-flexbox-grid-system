@@ -6,7 +6,7 @@
 *.pem
 
 # production
-/dist/*
+/dist
 
 # debug
 npm-debug.log*
