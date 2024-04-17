@@ -1,3 +1,3 @@
 # lucency-flex-grid
 
-An minimal SCSS flex grid system with responsive breakpoints
+A minimal SCSS flex grid system with responsive breakpoints.

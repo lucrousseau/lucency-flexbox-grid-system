@@ -5,6 +5,9 @@
 .DS_Store
 *.pem
 
+# production
+/dist
+
 # debug
 npm-debug.log*
 
