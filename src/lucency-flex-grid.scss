@@ -76,7 +76,7 @@
               "prop": "flex-wrap",
               "values": (
                 ("", wrap),
-                ("wrap-reverse", wrap-reverse),
+                ("reverse", wrap-reverse),
                 ("nowrap", nowrap),
               ),
             ),
@@ -108,11 +108,11 @@
               "values": (
                 ("normal" normal),
                 ("center", center),
-                ("flex-start", flex-start),
-                ("flex-end", flex-end),
-                ("space-between", space-between),
-                ("space-around", space-around),
-                ("space-evenly", space-evenly),
+                ("start", flex-start),
+                ("end", flex-end),
+                ("between", space-between),
+                ("around", space-around),
+                ("evenly", space-evenly),
                 ("baseline", baseline),
                 ("stretch", stretch),
               ),
@@ -132,6 +132,26 @@
 
     &-col {
       @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+        @include addMarginPadding(
+          (
+            "margin": (
+              top,
+              right,
+              bottom,
+              left,
+            ),
+            "padding": (
+              top,
+              right,
+              bottom,
+              left,
+            ),
+          ),
+          $breakpoints,
+          $currentPrefix,
+          $prefix
+        );
+
         @include setColsWidth($prefix, $columns, $slug);
 
         @include setPull($prefix, $slug);
