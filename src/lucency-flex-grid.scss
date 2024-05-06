@@ -59,6 +59,7 @@
             "#{$slug}": (
               "prop": "display",
               "values": (
+                ("", flex),
                 ("flex", flex),
                 ("inline-flex", inline-flex),
               ),
@@ -66,6 +67,7 @@
             "#{$slug}-flex": (
               "prop": "flex-direction",
               "values": (
+                ("", row),
                 ("row", row),
                 ("row-reverse", row-reverse),
                 ("column", column),
@@ -76,6 +78,7 @@
               "prop": "flex-wrap",
               "values": (
                 ("", wrap),
+                ("wrap", wrap),
                 ("reverse", wrap-reverse),
                 ("nowrap", nowrap),
               ),
@@ -123,6 +126,7 @@
       }
     }
 
+    &,
     &-flex,
     &-inline-flex {
       @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
