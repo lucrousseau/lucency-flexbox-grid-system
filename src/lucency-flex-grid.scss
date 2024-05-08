@@ -61,9 +61,7 @@
             "#{$slug}": (
               "prop": "display",
               "values": (
-                ("", flex),
                 ("flex", flex),
-                ("inline-flex", inline-flex),
                 ("grid", grid),
               ),
             ),
@@ -130,15 +128,13 @@
     }
 
     &-flex,
-    &-inline-flex,
     &-grid {
       @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
         @include setGap($breakpoints, $currentPrefix, $prefix);
       }
     }
 
-    &-flex,
-    &-inline-flex {
+    &-flex {
       .#{$slug}-col {
         @include setResponsiveStyles($breakpoints) using
           ($currentPrefix, $prefix) {
@@ -180,8 +176,9 @@
     }
 
     &-grid {
-      grid-template-columns: repeat($columns, 1fr);
-      grid-template-rows: repeat($columns, 1fr);
+      $cells: math.div($columns, 2);
+      grid-template-columns: repeat($cells, 1fr);
+      grid-template-rows: repeat($cells, 1fr);
 
       @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
         .#{$slug}-col,
@@ -202,10 +199,10 @@
         }
 
         .#{$slug}-col {
-          @include setGirdColWidth($prefix, $columns, $slug);
+          @include setGirdColWidth($prefix, $cells, $slug);
         }
         .#{$slug}-row {
-          @include setGridRowsHeight($prefix, $columns, $slug);
+          @include setGridRowsHeight($prefix, $cells, $slug);
         }
       }
     }
