@@ -6,6 +6,8 @@
 @import "./mixin/getPrefix";
 @import "./mixin/getPreviousPrefix";
 @import "./mixin/setColsWidth";
+@import "./mixin/setGirdColWidth";
+@import "./mixin/setGridRowsHeight";
 @import "./mixin/addCSSClasses";
 @import "./mixin/addMarginPadding";
 @import "./mixin/setGap";
@@ -62,6 +64,7 @@
                 ("", flex),
                 ("flex", flex),
                 ("inline-flex", inline-flex),
+                ("grid", grid),
               ),
             ),
             "#{$slug}-flex": (
@@ -126,56 +129,84 @@
       }
     }
 
-    &,
     &-flex,
-    &-inline-flex {
+    &-inline-flex,
+    &-grid {
       @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
         @include setGap($breakpoints, $currentPrefix, $prefix);
       }
     }
 
-    &-col {
-      @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
-        @include addMarginPadding(
-          (
-            "margin": (
-              top,
-              right,
-              bottom,
-              left,
-            ),
-            "padding": (
-              top,
-              right,
-              bottom,
-              left,
-            ),
-          ),
-          $breakpoints,
-          $currentPrefix,
-          $prefix
-        );
-
-        @include setColsWidth($prefix, $columns, $slug);
-
-        @include setPull($prefix, $slug);
-
-        @include addCSSClasses(
-          (
-            "#{$slug}-self": (
-              "prop": "align-self",
-              "values": (
-                ("auto", auto),
-                ("start", flex-start),
-                ("end", flex-end),
-                ("center", center),
-                ("stretch", stretch),
-                ("baseline", baseline),
+    &-flex,
+    &-inline-flex {
+      .#{$slug}-col {
+        @include setResponsiveStyles($breakpoints) using
+          ($currentPrefix, $prefix) {
+          @include addMarginPadding(
+            (
+              "margin": (
+                top,
+                right,
+                bottom,
+                left,
               ),
             ),
-          ),
-          $prefix
-        );
+            $breakpoints,
+            $currentPrefix,
+            $prefix
+          );
+
+          @include setColsWidth($prefix, $columns, $slug);
+          @include setPull($prefix, $slug);
+
+          @include addCSSClasses(
+            (
+              "#{$slug}-self": (
+                "prop": "align-self",
+                "values": (
+                  ("auto", auto),
+                  ("start", flex-start),
+                  ("end", flex-end),
+                  ("center", center),
+                  ("stretch", stretch),
+                  ("baseline", baseline),
+                ),
+              ),
+            ),
+            $prefix
+          );
+        }
+      }
+    }
+
+    &-grid {
+      grid-template-columns: repeat($columns, 1fr);
+      grid-template-rows: repeat($columns, 1fr);
+
+      @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+        .#{$slug}-col,
+        .#{$slug}-row {
+          @include addMarginPadding(
+            (
+              "padding": (
+                top,
+                right,
+                bottom,
+                left,
+              ),
+            ),
+            $breakpoints,
+            $currentPrefix,
+            $prefix
+          );
+        }
+
+        .#{$slug}-col {
+          @include setGirdColWidth($prefix, $columns, $slug);
+        }
+        .#{$slug}-row {
+          @include setGridRowsHeight($prefix, $columns, $slug);
+        }
       }
     }
 
@@ -189,6 +220,9 @@
         }
         &-right#{$prefix} {
           text-align: right;
+        }
+        &-justify#{$prefix} {
+          text-align: justify;
         }
       }
     }

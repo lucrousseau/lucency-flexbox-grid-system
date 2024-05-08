@@ -1,0 +1,11 @@
+@mixin setGridRowsHeight($prefix, $columns, $slug) {
+  @if ($prefix == "") {
+    grid-row: span $columns;
+  }
+
+  @for $size from 1 through $columns {
+    &.#{$slug}-row-#{$size}#{$prefix} {
+      grid-row: span $size;
+    }
+  }
+}

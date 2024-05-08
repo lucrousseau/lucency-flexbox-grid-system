@@ -1,0 +1,11 @@
+@mixin setGirdColWidth($prefix, $columns, $slug) {
+  @if ($prefix == "") {
+    grid-column: span $columns;
+  }
+
+  @for $size from 1 through $columns {
+    &.#{$slug}-col-#{$size}#{$prefix} {
+      grid-column: span $size;
+    }
+  }
+}

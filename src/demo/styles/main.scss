@@ -34,11 +34,16 @@ h1 {
   }
 }
 
-.lucency > * {
-  padding: 1rem;
-  overflow: hidden;
-  box-sizing: border-box;
-  color: var(--body-background-color);
-  border-radius: var(--border-radius);
-  background-color: var(--body-color);
+.lucency {
+  > * {
+    overflow: hidden;
+    color: var(--body-background-color);
+    border-radius: var(--border-radius);
+    background-color: var(--body-color);
+    > span {
+      padding: 1rem;
+      display: block;
+      box-sizing: border-box;
+    }
+  }
 }
