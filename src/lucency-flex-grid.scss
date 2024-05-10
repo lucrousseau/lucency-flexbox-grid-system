@@ -6,8 +6,7 @@
 @import "./mixin/getPrefix";
 @import "./mixin/getPreviousPrefix";
 @import "./mixin/setColsWidth";
-@import "./mixin/setGirdColWidth";
-@import "./mixin/setGridRowsHeight";
+@import "./mixin/addGridColumnsRows";
 @import "./mixin/addCSSClasses";
 @import "./mixin/addMarginPadding";
 @import "./mixin/setGap";
@@ -176,35 +175,10 @@
     }
 
     &-grid {
-      $cells: math.div($columns, 2);
-      grid-template-columns: repeat($cells, 1fr);
-      grid-template-rows: repeat($cells, 1fr);
+      grid-template-columns: repeat($columns, 1fr);
+      grid-template-rows: repeat($columns, 1fr);
 
-      @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
-        .#{$slug}-col,
-        .#{$slug}-row {
-          @include addMarginPadding(
-            (
-              "padding": (
-                top,
-                right,
-                bottom,
-                left,
-              ),
-            ),
-            $breakpoints,
-            $currentPrefix,
-            $prefix
-          );
-        }
-
-        .#{$slug}-col {
-          @include setGirdColWidth($prefix, $cells, $slug);
-        }
-        .#{$slug}-row {
-          @include setGridRowsHeight($prefix, $cells, $slug);
-        }
-      }
+      @include addGridColumnsRows($columns, $breakpoints, $slug);
     }
 
     &-align {

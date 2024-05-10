@@ -1,0 +1,52 @@
+@import "./setGirdColumnsWidth";
+@import "./setGridRowsHeight";
+
+@mixin addGridColumnsRows($columns, $breakpoints, $slug) {
+  @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+    $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
+    $grid: ("grid-columns", "grid-rows");
+
+    .#{$slug}-col,
+    .#{$slug}-row {
+      @include addMarginPadding(
+        (
+          "padding": (
+            top,
+            right,
+            bottom,
+            left,
+          ),
+        ),
+        $breakpoints,
+        $currentPrefix,
+        $prefix
+      );
+    }
+
+    .#{$slug}-col {
+      @each $property in $grid {
+        $values: ();
+
+        $previousBreakpoint: if(
+          $prefix == "",
+          0,
+          var(--get-#{$property}#{$previousPrefix})
+        );
+
+        --get-#{$property}#{$prefix}: var(
+          --#{$property}#{$prefix},
+          #{$previousBreakpoint}
+        );
+
+        $value: var(--get-#{$property}#{$prefix}, #{$previousBreakpoint});
+
+        $values: append($values, $value, space);
+
+        #{$property}: $values;
+      }
+
+      @include setGirdColWidth($prefix, $columns, $slug);
+      @include setGridRowsHeight($prefix, $columns, $slug);
+    }
+  }
+}
