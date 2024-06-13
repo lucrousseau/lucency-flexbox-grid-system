@@ -1,5 +1,5 @@
 @mixin setGirdColWidth($prefix, $columns, $slug) {
-  grid-column: span var(--get-grid-columns#{$prefix}, $columns);
+  grid-column: span var(--get-grid-column#{$prefix}, $columns);
 
   @for $size from 1 through $columns {
     &.#{$slug}-col-#{$size}#{$prefix} {

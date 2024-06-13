@@ -1,5 +1,5 @@
 @mixin setGridRowsHeight($prefix, $columns, $slug) {
-  grid-row: span var(--get-grid-rows#{$prefix}, $columns);
+  grid-row: span var(--get-grid-row#{$prefix}, $columns);
 
   @for $size from 1 through $columns {
     &.#{$slug}-row-#{$size}#{$prefix} {

@@ -4,7 +4,7 @@
 @mixin addGridColumnsRows($columns, $breakpoints, $slug) {
   @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
     $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
-    $grid: ("grid-columns", "grid-rows");
+    $grid: ("grid-column", "grid-row");
 
     .#{$slug}-col,
     .#{$slug}-row {
