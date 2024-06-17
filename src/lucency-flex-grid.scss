@@ -134,7 +134,7 @@
     }
 
     &-flex {
-      .#{$slug}-col {
+      > .#{$slug}-col {
         @include setResponsiveStyles($breakpoints) using
           ($currentPrefix, $prefix) {
           @include addMarginPadding(

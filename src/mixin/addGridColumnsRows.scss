@@ -6,8 +6,8 @@
     $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
     $grid: ("grid-column", "grid-row");
 
-    .#{$slug}-col,
-    .#{$slug}-row {
+    > .#{$slug}-col,
+    > .#{$slug}-row {
       @include addMarginPadding(
         (
           "padding": (
@@ -23,7 +23,7 @@
       );
     }
 
-    .#{$slug}-col {
+    > .#{$slug}-col {
       @each $property in $grid {
         $values: ();
 
