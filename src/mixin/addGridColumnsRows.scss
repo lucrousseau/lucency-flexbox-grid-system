@@ -2,6 +2,9 @@
 @import "./setGridRowsHeight";
 
 @mixin addGridColumnsRows($columns, $breakpoints, $slug) {
+  grid-template-columns: repeat($columns, 1fr);
+  grid-template-rows: repeat($columns, 1fr);
+
   @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
     $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
     $grid: ("grid-column", "grid-row");

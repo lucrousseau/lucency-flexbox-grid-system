@@ -131,15 +131,12 @@
 
         @include setGap($breakpoints, $currentPrefix, $prefix);
       }
-    }
-
-    &-flex {
       > .#{$slug}-col {
         @include setResponsiveStyles($breakpoints) using
           ($currentPrefix, $prefix) {
           @include addMarginPadding(
             (
-              "margin": (
+              "padding": (
                 top,
                 right,
                 bottom,
@@ -150,7 +147,14 @@
             $currentPrefix,
             $prefix
           );
+        }
+      }
+    }
 
+    &-flex {
+      > .#{$slug}-col {
+        @include setResponsiveStyles($breakpoints) using
+          ($currentPrefix, $prefix) {
           @include setColsWidth($prefix, $columns, $slug);
           @include setPull($prefix, $slug);
 
@@ -175,9 +179,6 @@
     }
 
     &-grid {
-      grid-template-columns: repeat($columns, 1fr);
-      grid-template-rows: repeat($columns, 1fr);
-
       @include addGridColumnsRows($columns, $breakpoints, $slug);
     }
 
