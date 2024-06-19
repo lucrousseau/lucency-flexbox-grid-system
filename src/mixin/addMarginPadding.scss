@@ -5,6 +5,10 @@
     $values: ();
 
     @each $direction in $directions {
+      @if ($prefix == "") {
+        --#{$property}-#{$direction}: 0;
+      }
+
       $previousBreakpoint: if(
         $prefix == "",
         0,
