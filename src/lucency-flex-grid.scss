@@ -34,26 +34,6 @@
   // Building the flex grid system
   .#{$slug} {
     @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
-      @include addMarginPadding(
-        (
-          "margin": (
-            top,
-            right,
-            bottom,
-            left,
-          ),
-          "padding": (
-            top,
-            right,
-            bottom,
-            left,
-          ),
-        ),
-        $breakpoints,
-        $currentPrefix,
-        $prefix
-      );
-
       @at-root {
         @include addCSSClasses(
           (
@@ -129,6 +109,26 @@
     &-flex,
     &-grid {
       @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
+        @include addMarginPadding(
+          (
+            "margin": (
+              top,
+              right,
+              bottom,
+              left,
+            ),
+            "padding": (
+              top,
+              right,
+              bottom,
+              left,
+            ),
+          ),
+          $breakpoints,
+          $currentPrefix,
+          $prefix
+        );
+
         @include setGap($breakpoints, $currentPrefix, $prefix);
       }
     }

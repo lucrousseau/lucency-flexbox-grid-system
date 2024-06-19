@@ -1,14 +1,16 @@
 @mixin addMarginPadding($marginPadding, $breakpoints, $currentPrefix, $prefix) {
+  @each $property, $directions in $marginPadding {
+    @each $direction in $directions {
+      --#{$property}-#{$direction}#{$prefix}: initial;
+    }
+  }
+
   $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
 
   @each $property, $directions in $marginPadding {
     $values: ();
 
     @each $direction in $directions {
-      @if ($prefix == "") {
-        --#{$property}-#{$direction}: 0;
-      }
-
       $previousBreakpoint: if(
         $prefix == "",
         0,
