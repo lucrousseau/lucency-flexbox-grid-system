@@ -34,76 +34,76 @@
   // Building the flex grid system
   .#{$slug} {
     @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
-      @at-root {
-        @include addCSSClasses(
-          (
-            "#{$slug}": (
-              "prop": "display",
-              "values": (
-                ("flex", flex),
-                ("grid", grid),
-              ),
-            ),
-            "#{$slug}-flex": (
-              "prop": "flex-direction",
-              "values": (
-                ("", row),
-                ("row", row),
-                ("row-reverse", row-reverse),
-                ("column", column),
-                ("column-reverse", column-reverse),
-              ),
-            ),
-            "#{$slug}-flex-wrap": (
-              "prop": "flex-wrap",
-              "values": (
-                ("", wrap),
-                ("wrap", wrap),
-                ("reverse", wrap-reverse),
-                ("nowrap", nowrap),
-              ),
-            ),
-            "#{$slug}-justify": (
-              "prop": "justify-content",
-              "values": (
-                ("normal", normal),
-                ("start", flex-start),
-                ("end", flex-end),
-                ("center", center),
-                ("between", space-between),
-                ("around", space-around),
-                ("evenly", space-evenly),
-                ("stretch", stretch),
-              ),
-            ),
-            "#{$slug}-items": (
-              "prop": "align-items",
-              "values": (
-                ("start", flex-start),
-                ("end", flex-end),
-                ("center", center),
-                ("baseline", baseline),
-                ("stretch", stretch),
-              ),
-            ),
-            "#{$slug}-content": (
-              "prop": "align-content",
-              "values": (
-                ("normal" normal),
-                ("center", center),
-                ("start", flex-start),
-                ("end", flex-end),
-                ("between", space-between),
-                ("around", space-around),
-                ("evenly", space-evenly),
-                ("baseline", baseline),
-                ("stretch", stretch),
-              ),
+      @include addCSSClasses(
+        (
+          "#{$slug}": (
+            "prop": "display",
+            "values": (
+              ("flex", flex),
+              ("grid", grid),
             ),
           ),
-          $prefix
-        );
-      }
+          "#{$slug}-flex": (
+            "prop": "flex-direction",
+            "values": (
+              ("", row),
+              ("row", row),
+              ("row-reverse", row-reverse),
+              ("column", column),
+              ("column-reverse", column-reverse),
+            ),
+          ),
+          "#{$slug}-flex-wrap": (
+            "prop": "flex-wrap",
+            "values": (
+              ("", wrap),
+              ("wrap", wrap),
+              ("reverse", wrap-reverse),
+              ("nowrap", nowrap),
+            ),
+          ),
+          "#{$slug}-justify": (
+            "prop": "justify-content",
+            "default": "inherit",
+            "values": (
+              ("inherit", "inherit"),
+              ("normal", normal),
+              ("start", flex-start),
+              ("end", flex-end),
+              ("center", center),
+              ("between", space-between),
+              ("around", space-around),
+              ("evenly", space-evenly),
+              ("stretch", stretch),
+            ),
+          ),
+          "#{$slug}-items": (
+            "prop": "align-items",
+            "values": (
+              ("start", flex-start),
+              ("end", flex-end),
+              ("center", center),
+              ("baseline", baseline),
+              ("stretch", stretch),
+            ),
+          ),
+          "#{$slug}-content": (
+            "prop": "align-content",
+            "values": (
+              ("normal" normal),
+              ("center", center),
+              ("start", flex-start),
+              ("end", flex-end),
+              ("between", space-between),
+              ("around", space-around),
+              ("evenly", space-evenly),
+              ("baseline", baseline),
+              ("stretch", stretch),
+            ),
+          ),
+        ),
+        $prefix
+      );
     }
 
     &-flex,
@@ -176,6 +176,21 @@
                   ("center", center),
                   ("stretch", stretch),
                   ("baseline", baseline),
+                ),
+              ),
+              "#{$slug}-justify": (
+                "prop": "justify-content",
+                "default": "inherit",
+                "values": (
+                  ("inherit", "inherit"),
+                  ("normal", normal),
+                  ("start", flex-start),
+                  ("end", flex-end),
+                  ("center", center),
+                  ("between", space-between),
+                  ("around", space-around),
+                  ("evenly", space-evenly),
+                  ("stretch", stretch),
                 ),
               ),
             ),

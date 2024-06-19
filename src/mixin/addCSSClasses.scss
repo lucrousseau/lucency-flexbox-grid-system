@@ -2,6 +2,8 @@
   @each $key, $value in $classes {
     $prop: map-get($value, prop);
     $values: map-get($value, values);
+    $default: map-get($value, default);
+    #{$prop}: #{$default};
 
     @each $valueKey, $actualValue in $values {
       @if ($valueKey != "") {
