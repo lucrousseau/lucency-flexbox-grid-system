@@ -131,11 +131,18 @@
 
         @include setGap($breakpoints, $currentPrefix, $prefix);
       }
+
       > .#{$slug}-col {
         @include setResponsiveStyles($breakpoints) using
           ($currentPrefix, $prefix) {
           @include addMarginPadding(
             (
+              "margin": (
+                top,
+                right,
+                bottom,
+                left,
+              ),
               "padding": (
                 top,
                 right,

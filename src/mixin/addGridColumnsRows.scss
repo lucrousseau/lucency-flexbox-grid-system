@@ -9,23 +9,6 @@
     $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
     $grid: ("grid-column", "grid-row");
 
-    > .#{$slug}-col,
-    > .#{$slug}-row {
-      @include addMarginPadding(
-        (
-          "padding": (
-            top,
-            right,
-            bottom,
-            left,
-          ),
-        ),
-        $breakpoints,
-        $currentPrefix,
-        $prefix
-      );
-    }
-
     > .#{$slug}-col {
       @each $property in $grid {
         $values: ();
