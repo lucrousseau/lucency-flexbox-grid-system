@@ -45,8 +45,8 @@
           ),
           "#{$slug}-flex": (
             "prop": "flex-direction",
+            "default": "row",
             "values": (
-              ("", row),
               ("row", row),
               ("row-reverse", row-reverse),
               ("column", column),
@@ -55,8 +55,8 @@
           ),
           "#{$slug}-flex-wrap": (
             "prop": "flex-wrap",
+            default: "wrap",
             "values": (
-              ("", wrap),
               ("wrap", wrap),
               ("reverse", wrap-reverse),
               ("nowrap", nowrap),
@@ -66,7 +66,6 @@
             "prop": "justify-content",
             "default": "inherit",
             "values": (
-              ("inherit", "inherit"),
               ("normal", normal),
               ("start", flex-start),
               ("end", flex-end),
@@ -79,6 +78,7 @@
           ),
           "#{$slug}-items": (
             "prop": "align-items",
+            "default": "inherit",
             "values": (
               ("start", flex-start),
               ("end", flex-end),
@@ -89,6 +89,7 @@
           ),
           "#{$slug}-content": (
             "prop": "align-content",
+            "default": "inherit",
             "values": (
               ("normal" normal),
               ("center", center),
@@ -181,17 +182,17 @@
               "#{$slug}-justify": (
                 "prop": "justify-content",
                 "default": "inherit",
-                "values": (
-                  ("inherit", "inherit"),
-                  ("normal", normal),
-                  ("start", flex-start),
-                  ("end", flex-end),
-                  ("center", center),
-                  ("between", space-between),
-                  ("around", space-around),
-                  ("evenly", space-evenly),
-                  ("stretch", stretch),
-                ),
+                "values": (),
+              ),
+              "#{$slug}-items": (
+                "prop": "align-items",
+                "default": "inherit",
+                "values": (),
+              ),
+              "#{$slug}-content": (
+                "prop": "align-content",
+                "default": "inherit",
+                "values": (),
               ),
             ),
             $prefix
