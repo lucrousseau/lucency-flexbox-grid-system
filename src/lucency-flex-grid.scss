@@ -38,6 +38,7 @@
         (
           "#{$slug}": (
             "prop": "display",
+            "default": "flex",
             "values": (
               ("flex", flex),
               ("grid", grid),
