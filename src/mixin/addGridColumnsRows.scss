@@ -2,35 +2,35 @@
 @import "./setGridRowsHeight";
 
 @mixin addGridColumnsRows($columns, $breakpoints, $slug) {
-  grid-template-columns: repeat($columns, 1fr);
-  grid-template-rows: repeat($columns, 1fr);
-
   @include setResponsiveStyles($breakpoints) using ($currentPrefix, $prefix) {
     $previousPrefix: getPreviousPrefix($breakpoints, $currentPrefix);
-    $grid: ("grid-column", "grid-row");
+    $props: ("grid-template-columns", "grid-template-rows");
+
+    @each $property in $props {
+      $values: ();
+
+      $previousBreakpoint: if(
+        $prefix == "",
+        0,
+        var(--get-#{$property}#{$previousPrefix})
+      );
+
+      --get-#{$property}#{$prefix}: var(
+        --#{$property}#{$prefix},
+        #{$previousBreakpoint}
+      );
+
+      $value: repeat(
+        var(--get-#{$property}#{$prefix}, #{$previousBreakpoint}),
+        1fr
+      );
+
+      $values: append($values, $value, space);
+
+      #{$property}: $values;
+    }
 
     > .#{$slug}-col {
-      @each $property in $grid {
-        $values: ();
-
-        $previousBreakpoint: if(
-          $prefix == "",
-          0,
-          var(--get-#{$property}#{$previousPrefix})
-        );
-
-        --get-#{$property}#{$prefix}: var(
-          --#{$property}#{$prefix},
-          #{$previousBreakpoint}
-        );
-
-        $value: var(--get-#{$property}#{$prefix}, #{$previousBreakpoint});
-
-        $values: append($values, $value, space);
-
-        #{$property}: $values;
-      }
-
       @include setGirdColWidth($prefix, $columns, $slug);
       @include setGridRowsHeight($prefix, $columns, $slug);
     }
