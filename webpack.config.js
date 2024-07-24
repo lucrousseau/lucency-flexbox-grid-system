@@ -1,10 +1,19 @@
 const path = require("path");
+const fs = require("fs");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
+
+const breakpoints = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "breakpoints.json"))
+);
+
+const breakpointVariables = Object.entries(breakpoints)
+  .map(([key, value]) => `$${key}: ${value};`)
+  .join("\n");
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
@@ -21,12 +30,24 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.scss$/,
+          test: /\.(sa|sc|c)ss$/,
           use: [
             MiniCssExtractPlugin.loader,
             "css-loader",
             {
+              loader: "postcss-loader",
+              options: {
+                postcssOptions: {
+                  plugins: [["postcss-preset-env"]],
+                },
+              },
+            },
+            "postcss-loader",
+            {
               loader: "sass-loader",
+              options: {
+                additionalData: `@use "sass:math";\n${breakpointVariables}`,
+              },
             },
           ],
         },

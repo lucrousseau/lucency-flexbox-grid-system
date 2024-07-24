@@ -1,3 +1,12 @@
 @import "./lucency-flexbox-grid-system";
 
-@include lucencyFlexboxGridSystem();
+@include lucencyFlexboxGridSystem(
+  $breakpoints: (
+    xxl: $xxl,
+    xl: $xl,
+    lg: $lg,
+    md: $md,
+    sm: $sm,
+    xs: $xs,
+  )
+);
