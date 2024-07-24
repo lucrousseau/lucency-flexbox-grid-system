@@ -12,7 +12,7 @@
 @import "./mixin/setGap";
 @import "./mixin/setPull";
 
-@mixin lucencyFlexGrid(
+@mixin lucencyFlexboxGridSystem(
   $breakpoints: (
     xxl: "1536px",
     xl: "1280px",

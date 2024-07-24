@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
   return {
     mode: argv.mode,
     entry: {
-      "lucency-flex-grid": "./src/main.scss",
+      "lucency-flexbox-grid-system": "./src/main.scss",
       "demo/demo": "./src/demo/styles/main.scss",
     },
     output: {
