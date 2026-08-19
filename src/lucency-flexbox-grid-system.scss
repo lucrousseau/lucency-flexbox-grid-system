@@ -1,6 +1,3 @@
-@use "sass:math";
-
-// Importing the mixins
 @import "./mixin/setMediaQueryBreakpoints";
 @import "./mixin/setResponsiveStyles";
 @import "./mixin/getPrefix";
@@ -92,7 +89,7 @@
             "prop": "align-content",
             "default": "inherit",
             "values": (
-              ("normal" normal),
+              ("normal", normal),
               ("center", center),
               ("start", flex-start),
               ("end", flex-end),
@@ -179,21 +176,6 @@
                   ("stretch", stretch),
                   ("baseline", baseline),
                 ),
-              ),
-              "#{$slug}-justify": (
-                "prop": "justify-content",
-                "default": "inherit",
-                "values": (),
-              ),
-              "#{$slug}-items": (
-                "prop": "align-items",
-                "default": "inherit",
-                "values": (),
-              ),
-              "#{$slug}-content": (
-                "prop": "align-content",
-                "default": "inherit",
-                "values": (),
               ),
             ),
             $prefix

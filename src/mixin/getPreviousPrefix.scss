@@ -1,6 +1,5 @@
 @function getPreviousPrefix($breakpoints, $prefix) {
   $previousPrefix: null;
-  $previousBreakpoint: null;
 
   @if $prefix == "full" {
     @return null;

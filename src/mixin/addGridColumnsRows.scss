@@ -1,4 +1,4 @@
-@import "./setGirdColumnsWidth";
+@import "./setGridColumnsWidth";
 @import "./setGridRowsHeight";
 
 @mixin addGridColumnsRows($columns, $breakpoints, $slug) {
@@ -31,7 +31,7 @@
     }
 
     > .#{$slug}-col {
-      @include setGirdColWidth($prefix, $columns, $slug);
+      @include setGridColWidth($prefix, $columns, $slug);
       @include setGridRowsHeight($prefix, $columns, $slug);
     }
   }

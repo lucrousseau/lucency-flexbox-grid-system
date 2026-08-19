@@ -1,29 +1,47 @@
 {
   "name": "lucency-flexbox-grid-system",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Desktop-first SCSS flex and CSS grid system with configurable breakpoints and CSS custom properties.",
+  "author": "Luc Rousseau",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "main": "dist/lucency-flexbox-grid-system.css",
+  "style": "dist/lucency-flexbox-grid-system.css",
+  "sass": "src/lucency-flexbox-grid-system.scss",
+  "files": [
+    "dist/lucency-flexbox-grid-system.css",
+    "src",
+    "breakpoints.json"
+  ],
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack --mode development --watch"
+    "start": "webpack --mode development --watch",
+    "test": "node --test tests/*.test.cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "scss",
+    "flexbox",
+    "css-grid",
+    "responsive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucrousseau/lucency-flexbox-grid-system.git"
+  },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
-    "css-minimizer-webpack-plugin": "^7.0.0",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.9.0",
     "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^9.6.0",
     "sass": "^1.77.8",
     "sass-loader": "^14.2.1",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
     "webpack-remove-empty-scripts": "^1.0.4"
-  },
-  "dependencies": {
-    "postcss-preset-env": "^9.6.0"
   }
 }

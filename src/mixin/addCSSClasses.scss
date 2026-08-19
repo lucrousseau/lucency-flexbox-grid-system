@@ -4,8 +4,10 @@
     $values: map-get($value, values);
     $default: map-get($value, default);
 
-     & {
-      #{$prop}: #{$default};
+    @if $default != null {
+      & {
+        #{$prop}: #{$default};
+      }
     }
 
     @each $valueKey, $actualValue in $values {
